@@ -1,5 +1,5 @@
 {%extends "django_registration/base.html"%}
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 {% block content %}
 <div class="container">
   <div class="row top-buffer">
@@ -15,9 +15,9 @@
       {% if form.errors %}
         <p> Password or Username is incorrect </p>
       {% endif %}
-      <div class="panel panel-default">
+      <div class="card card-default">
 
-        <div class="panel-heading">
+        <div class="card-heading">
 
             <h2> Insta-Klooni!</h2>
             <p> ~Inspired by Instagram</p>
@@ -25,14 +25,13 @@
 
 
         </div>
-        <div class="panel-body">
+        <div class="card-body">
 
           <form  action="/accounts/login/" method="post">
             {% csrf_token %}
           
-
             <div class="form-group">
-            
+
             {% bootstrap_form form %}
 
             <input type="submit" class="btn btn-primary btn-sm" value="Login">
