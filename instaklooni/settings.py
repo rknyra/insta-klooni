@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'instaklooni.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'instaklooni',
         'USER': 'rknyra',
         'PASSWORD': 'rknyra7',
