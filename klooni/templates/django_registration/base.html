@@ -9,11 +9,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  {%if title%}
+  {% if title %}
 
   <title>{{title}}</title>
 
-  {%endif%}
+  {% endif %}
 
   {% block styles %}
     {% bootstrap_css %}
@@ -23,7 +23,7 @@
 
 <body>
 
-  {% block content %}  {%endblock%}
+  {% block content %}  {% endblock %}
 
 
   {% block scripts %}
