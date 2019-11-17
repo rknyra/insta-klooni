@@ -21,7 +21,7 @@ from django_registration.backends.one_step.views import RegistrationView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('klooni.urls')),
-    path('accounts/register/', RegistrationView.as_view(success_url='accounts/login?next=/')),
+    path('accounts/register/',RegistrationView.as_view(success_url='/accounts/login?next=/')),
     path('accounts/',include('django_registration.backends.one_step.urls')),
     path('accounts/',include('django.contrib.auth.urls')),
     path('logout/',views.LogoutView.as_view(),{'next_page':'/'}),
