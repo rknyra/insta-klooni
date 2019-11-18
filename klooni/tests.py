@@ -8,7 +8,7 @@ class ImageTestClass(TestCase):
     def setUp(self):
         self.img = Image(id=1, name='imgOne',caption='capOne', likes=3, comments='clever!', profile_id=1)
         self.img.save_image()
-        self.img.delete()
+        
         
     #testing  instance
     def test_instance(self):
@@ -21,14 +21,19 @@ class ImageTestClass(TestCase):
         self.assertTrue(len(img) > 0)
         
     #testing the update_method
-    # def test_update_method(self):
-    #     self.img.update_image()
+    def test_update_method(self):
+        img=Image.objects.filter(id=1).update_image(name='imgTwo')
+        self.img.save()
+    
+    #testing updated instance
+    def test_instance(self):
+        self.assertTrue(isinstance(self.img,Image))
 
   #set-up method
     def setUp(self):
         self.img = Image(id=1, name='imgOne',caption='capOne', likes=3, comments='clever!', profile_id=1)
         self.img.save()
-        self.img.delete()
+        
         
     #testing the delete_method
     def test_delete_method(self):
