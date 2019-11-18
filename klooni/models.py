@@ -45,3 +45,8 @@ class Image(models.Model):
    
     class Meta:
         ordering = ['post_date']
+    
+    @classmethod
+    def images(cls):
+        images = cls.objects.filter(id=Image.id)
+        return images

@@ -9,6 +9,8 @@
 
 <div class='row justify-content-center top-buffer'>
 
+{% for item in images %}
+
 <div class='col-xs-7 col-sm-7 col-md-7 col-lg-7'>
 
 <div class='d-inline-flex'>
@@ -16,8 +18,9 @@
 <div> && the some user's name</div>
 </div>
 <hr>
+
 <div>
-pics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will appear herepics and vids will
+<img src="{{item.image}}" alt='image'>
 </div> 
 <hr>
 <div class='d-inline-flex'>
@@ -36,9 +39,9 @@ current user  details sneakpeak will appear here with link to see more
 </div>
 
 
+{% endfor %}
 
 </div>
-
 </div>
 
 {% endblock %}

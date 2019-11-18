@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import login, views, forms
 from django.contrib.auth.decorators import login_required
+from .models import Profile, Image
 
 
 #landing page
@@ -11,4 +12,5 @@ def landing(request):
 #home page
 @login_required(login_url='/accounts/login')
 def home(request):
-    return render(request,'klooni_pages/home.html')
+    images = Image.objects.all()
+    return render(request,'klooni_pages/home.html', {'images':images})
