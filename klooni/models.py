@@ -19,4 +19,8 @@ class Image(models.Model):
     likes = models.IntegerField(blank=True)
     comments = models.CharField(max_length =200, blank=True)
     
-    
+    def save_image(self):
+            self.save()
+   
+    class Meta:
+        ordering = ['post_date']
