@@ -36,6 +36,8 @@ class Image(models.Model):
     profile = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.IntegerField(blank=True)
     comments = models.CharField(max_length =200, blank=True)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, default=None)
+
     
     def save_image(self):
         self.save()
