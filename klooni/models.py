@@ -8,6 +8,16 @@ from django.shortcuts import get_object_or_404
 class Profile(models.Model):
     prof_pic = ImageField(blank=True, manual_crop="")
     bio = models.CharField(max_length = 200)
+    
+    def save_profile(self):
+        self.save()
+            
+    def update_profile(self):
+        prof=Profile.objects.filter(id=Profile.id).update()
+        
+    def delete_image(self):
+        prof=Profile.objects.filter(id=Profile.id).delete()
+   
 
 
 #Image Model
