@@ -39,12 +39,14 @@ def search_results(request):
 def profilePage(request):
     images = Image.objects.all()
     user = request.user.get_username()
+    current_user = request.user
+    photos = Image.objects.filter(id=current_user.id)
     profile = Profile.objects.all()
-    return render(request,'klooni_pages/profile.html', {'images':images, 'user':user, 'profile':profile})
+    return render(request,'klooni_pages/profile.html', {'photos':photos, 'user':user, 'profile':profile, 'images': images})
 
-#filter photos by user_id
-def filter_by_user_id(request, search_term):
-    photos = Image.filter_by_user_id(search_term)
-    message = f"{search_term}"
+# #filter photos by user_id
+# def filter_by_user_id(request, search_term):
+#     photos = Image.filter_by_user_id(search_term)
+#     message = f"{search_term}"
     
-    return render (request,'klooni_pages/profile.html',{"message":message,'photos': photos})
+#     return render (request,'klooni_pages/profile.html',{"message":message,'photos': photos})
