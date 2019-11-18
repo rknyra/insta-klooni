@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 class Profile(models.Model):
     prof_pic = ImageField(blank=True, manual_crop="")
     bio = models.CharField(max_length = 200)
+    user = models.OneToOneField('auth.User',on_delete=models.CASCADE, default=None)
     
     def save_profile(self):
         self.save()
@@ -17,6 +18,12 @@ class Profile(models.Model):
         
     def delete_image(self):
         prof=Profile.objects.filter(id=Profile.id).delete()
+        
+    
+    @classmethod
+    def profile(cls):
+        profile = cls.objects.filter(id=Profile.id)
+        return profile
    
 
 

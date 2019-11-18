@@ -15,5 +15,5 @@ def landing(request):
 def home(request):
     images = Image.objects.all()
     user = request.user.get_username()
-    
-    return render(request,'klooni_pages/home.html', {'images':images, 'user':user})
+    profile = Profile.objects.all()
+    return render(request,'klooni_pages/home.html', {'images':images, 'user':user, 'profile':profile})
