@@ -8,55 +8,43 @@
 <hr>
 
 <div class='row justify-content-center top-buffer'>
-
 {% for item in images %}
 
-<div class='col-xs-7 col-sm-7 col-md-7 col-lg-7 d-block'>
+<div class='col-xs-7 col-sm-7 col-md-7 col-lg-7 d-block top-buffer'> 
+
 
 <div class='d-inline-flex'>
-{% for prof in  profile %}
-<div class='d-flex justify-content-start align-items-center'>
-<div class="userAvatar mr-2"> <img class='img-thumbnail' src="{{prof.prof_pic}}" alt='userAvatar'></div>
-<div> {{ prof.user.username}} </div>
-{% endfor %}
-</div>
-</div>
+<div class="userAvatar mr-2"> <img class='img-thumbnail' src="{{item.user.prof_pic.cdn_url}}" alt='userAvatar'></div>
 
+<div class='text-center mr-2 align-self-center'> <strong> {{ item.user.user.username}} </strong> </div>
+</div>
+<hr>
+<div class='text-center align-self-center'> <p> Email:  {{ item.user.user.email}} </p></div>
+
+<div class='text-center align-self-center'> <p> Bio:  {{ item.user.bio}} </p></div>
 <hr>
 
+<h5> My Posts... </h5>
+{% comment %} pics posted by current_user {% endcomment %}
 <div class='d-flex justify-content-center'>
-<img src="{{item.image}}" alt='image'>
-</div> 
-<hr>
-<div>
+<img class='img-responsive imagePost' src="{{item.image.cdn_url}}" alt='image'>
+</div>
+
 <p> {{item.name}} </p>
 <p> {{ item.caption }} </p>
-<p> {{item.likes}} likes </p>
+<p><i class="fa fa-heart-o"></i><br>
+{{item.likes}} likes </p>
 <p class='blueUnderline'>Comments</p>
 <div> {{item.comments}} </div>
-</div>
 <hr>
 <div>
 insert post comment FORM  here
 </div>
 
-{% empty %}
-  <div class="row">
-    <h2 class="text-center">No photos or videos posted yet <a href='/'> How about you post some... </a></h2>
-  </div>
-
+<hr>
 </div>
 {% endfor %}
 
 </div>
-{% for prof in  profile %}
-<div class='col-xs-3 col-sm-3 col-md-3 col-lg-3 d-flex justify-content-center'>
-<div class='align-items-start'>
-<div class="userAvatar mr-2"> <img class='img-thumbnail' src="{{prof.prof_pic}}" alt='userAvatar'></div>
-<div class='text-center'> <strong> {{ prof.user.username}} </strong> </div>
 </div>
-</div>
-{% endfor %}
-</div>
-
 {% endblock %}

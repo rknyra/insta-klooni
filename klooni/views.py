@@ -19,6 +19,7 @@ def home(request):
     return render(request,'klooni_pages/home.html', {'images':images, 'user':user, 'profile':profile})
 
 #search feature
+@login_required(login_url='/accounts/login')
 def search_results(request):
     
     if 'username' in request.GET and request.GET["username"]:
@@ -31,3 +32,19 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'klooni_pages/search.html',{"message":message})
+
+
+#profile page
+@login_required(login_url='/accounts/login')
+def profilePage(request):
+    images = Image.objects.all()
+    user = request.user.get_username()
+    profile = Profile.objects.all()
+    return render(request,'klooni_pages/profile.html', {'images':images, 'user':user, 'profile':profile})
+
+#filter photos by user_id
+def filter_by_user_id(request, search_term):
+    photos = Image.filter_by_user_id(search_term)
+    message = f"{search_term}"
+    
+    return render (request,'klooni_pages/profile.html',{"message":message,'photos': photos})

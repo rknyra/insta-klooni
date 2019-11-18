@@ -65,3 +65,8 @@ class Image(models.Model):
     def search_by_username(cls,profile):
         foundUser = cls.objects.filter(profile__username=profile)
         return foundUser
+    
+    @classmethod
+    def filter_by_user_id(cls,search_term):
+        photos = cls.objects.filter(image__user_id=search_term)
+        return photos
