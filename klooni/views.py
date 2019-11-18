@@ -21,13 +21,13 @@ def home(request):
 #search feature
 def search_results(request):
     
-    if 'user' in request.GET and request.GET["user"]:
-        search_term = request.GET.get("user")
-        searched_articles = User.search_by_username(search_term)
+    if 'username' in request.GET and request.GET["username"]:
+        search_term = request.GET.get("username")
+        searched_users = Image.search_by_username(search_term)
         message = f"{search_term}"
 
-        return render(request, 'all-news/search.html',{"message":message,"articles": searched_articles})
+        return render(request, 'klooni_pages/search.html',{"message":message,"usernames": searched_users})
 
     else:
         message = "You haven't searched for any term"
-        return render(request, 'all-news/search.html',{"message":message})
+        return render(request, 'klooni_pages/search.html',{"message":message})

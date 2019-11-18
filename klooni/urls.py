@@ -6,9 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     url('^$',views.landing,name='klooniLandingPage'),
     url('^home/',views.home,name='klooniHome'),
-    # url(r'^search/', views.search_results,name='search_results'),
-    # url(r'^article/(\d+)',views.article,name='article'),
-    # url(r'^new/article$',views.new_article,name='new-article'),
+    url(r'^search/', views.search_results,name='search_results'),
     ]
 if settings.DEBUG:
     urlpatterns

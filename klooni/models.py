@@ -25,12 +25,7 @@ class Profile(models.Model):
         profile = cls.objects.filter(id=Profile.id)
         return profile
     
-    @classmethod
-    def search_by_username(cls,search_term):
-        foundUser = cls.objects.filter(username__icontains=search_term)
-        return foundUser
-   
-
+ 
 
 #Image Model
 class Image(models.Model):
@@ -67,6 +62,6 @@ class Image(models.Model):
     
     
     @classmethod
-    def search_by_username(cls,search_term):
-        foundUser = cls.objects.filter(username__icontains=search_term)
+    def search_by_username(cls,profile):
+        foundUser = cls.objects.filter(profile__username=profile)
         return foundUser
