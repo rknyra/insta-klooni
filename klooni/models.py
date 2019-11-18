@@ -16,5 +16,7 @@ class Image(models.Model):
     caption = models.CharField(max_length =700)
     post_date = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(User, on_delete=models.CASCADE)
-    likes = models.IntegerField()
-    comments = models.CharField(max_length =200)
+    likes = models.IntegerField(blank=True)
+    comments = models.CharField(max_length =200, blank=True)
+    
+    
