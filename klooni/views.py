@@ -13,10 +13,13 @@ def landing(request):
 #home page
 @login_required(login_url='/accounts/login')
 def home(request):
+    form = forms.AuthenticationForm
     images = Image.objects.all()
     user = request.user.get_username()
     profile = Profile.objects.all()
-    return render(request,'klooni_pages/home.html', {'images':images, 'user':user, 'profile':profile})
+    comments_field = Image._meta.get_field('comments')
+    likes_field = Image._meta.get_field('likes')
+    return render(request,'klooni_pages/home.html', {'images':images, 'user':user, 'profile':profile, 'form':form, 'comments_field':comments_field, 'likes_field':likes_field})
 
 #search feature
 @login_required(login_url='/accounts/login')
@@ -42,7 +45,9 @@ def profilePage(request):
     current_user = request.user
     photos = Image.objects.filter(id=current_user.id)
     profile = Profile.objects.all()
-    return render(request,'klooni_pages/profile.html', {'photos':photos, 'user':user, 'profile':profile, 'images': images})
+    comments_field = Image._meta.get_field('comments')
+    likes_field = Image._meta.get_field('likes')
+    return render(request,'klooni_pages/profile.html', {'photos':photos, 'user':user, 'profile':profile, 'images': images,  'comments_field':comments_field, 'likes_field':likes_field})
 
 # #filter photos by user_id
 # def filter_by_user_id(request, search_term):

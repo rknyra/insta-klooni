@@ -42,7 +42,22 @@
 <div> {{photo.comments}} </div>
 <hr>
 <div>
-insert post comment FORM  here
+{% comment %} insert post comment FORM  here {% endcomment %}
+
+  <form  action="admin/klooni/image" method="post">
+    {% csrf_token %}
+  
+    <div class="form-group">
+
+    <input id='comment' type="text" name='comments_field' class="form-control" value="">
+
+    <input type="submit" class="btn btn-primary btn-sm my-2" value="Post Comment">
+    </div><br>
+
+    <input type="hidden" name="next" value="{{next}}">
+
+ 
+  </form>
 </div>
 
 <hr>
