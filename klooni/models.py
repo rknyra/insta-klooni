@@ -7,7 +7,7 @@ from pyuploadcare.dj.models import ImageField
 class Profile(models.Model):
     prof_pic = ImageField(blank=True, manual_crop="")
     bio = models.CharField(max_length = 200)
-    
+
 
 #Image Model
 class Image(models.Model):
@@ -16,5 +16,5 @@ class Image(models.Model):
     caption = models.CharField(max_length =700)
     post_date = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    likes = models.ManytToMany(User, related_name='likes', blank=True)
-    comments = models.ManytToMany(User, related_name='comments', blank=True)
+    likes = models.IntegerField()
+    comments = models.CharField(max_length =200)
