@@ -1,0 +1,14 @@
+body {
+    font-family: 'Courgette', cursive;
+    font-size: 3vh;
+}
+.navHomeLink {
+    font-family: 'Cookie', cursive;
+    font-size: 7vh;
+}
+.navbar {
+    font-family: 'Lobster', cursive;
+}
+.top-buffer {
+    margin-top: 5%;
+}
