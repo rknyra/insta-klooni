@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'klooni',
     'bootstrap4',
+    'pyuploadcare.dj',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,12 @@ TEMPLATES = [
         },
     },
 ]
+
+from decouple import config
+UPLOADCARE = {
+    'pub_key': 'fa38026657524765d660',
+    'secret': config('SECRET'),
+}
 
 WSGI_APPLICATION = 'instaklooni.wsgi.application'
 
