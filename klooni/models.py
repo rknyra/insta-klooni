@@ -24,8 +24,11 @@ class Image(models.Model):
         self.save()
             
     def update_image(self):
-        img=Image.objects.filter(id=Image.id).update()  
-    
+        img=Image.objects.filter(id=Image.id).update()
+        
+    def update_caption(self):
+        img=Image.objects.filter(id=Image.id).update()     
+        
     def delete_image(self):
         # img = get_object_or_404(Image,pk=Image.id)
         img=Image.objects.filter(id=Image.id).delete()
