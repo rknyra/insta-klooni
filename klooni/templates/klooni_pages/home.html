@@ -14,8 +14,8 @@
 <div class='col-xs-7 col-sm-7 col-md-7 col-lg-7'>
 
 <div class='d-inline-flex'>
-<div> some user's avatar </div>
-<div> && the some user's name</div>
+<p> some user's avatar </p>
+<p> {{ item.profile}} </p>
 </div>
 <hr>
 
@@ -23,19 +23,30 @@
 <img src="{{item.image}}" alt='image'>
 </div> 
 <hr>
-<div class='d-inline-flex'>
-<div> love heart like button </div>
-<div> insert comment glyphicon </div>
+<div>
+<p> {{ item.caption }} </p>
+<p> {{item.likes}} likes </p>
+<p class='blueUnderline'>Comments</p>
+<div> {{item.comments}} </div>
 </div>
-
+<hr>
 <div>
 insert post comment FORM  here
 </div>
 
+
+{% empty %}
+  <div class="row">
+    <h2 class="text-center">No photos or vidieos posted yet <a href='/'> How about you post some... </a></h2>
+  </div>
+  
+
 </div>
 
 <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>
-current user  details sneakpeak will appear here with link to see more
+{% if user.is_authenticated %}
+<p><strong> {{ user.username }} </strong></p>
+{% endif %}
 </div>
 
 
