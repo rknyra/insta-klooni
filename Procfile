@@ -1,0 +1,1 @@
+web: gunicorn instaklooni.wsgi --log-file -
