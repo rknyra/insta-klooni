@@ -75,8 +75,8 @@ TEMPLATES = [
 
 from decouple import config
 UPLOADCARE = {
-    'pub_key': '16dfd6496130ede6336a',
-    'secret': config('SECRET'),
+    'pub_key':'16dfd6496130ede6336a',
+    'secret':config('SECRET'),
 }
 
 WSGI_APPLICATION = 'instaklooni.wsgi.application'
