@@ -1,14 +1,30 @@
+{% load bootstrap4 %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% if title %}
+  <title> insta-klooni - {{title}}</title>
+  {% else %}
+    <title> insta-klooni </title>
+  {% endif %}
+
+{% block styles %}
+{% bootstrap_css %}
+<link href="https://fonts.googleapis.com/css?family=Cookie|Courgette|Lobster|News+Cycle&display=swap" rel="stylesheet">
+<link href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel='stylesheet' href='{% static 'css/baseklooni.css'%}'>
+{% endblock %}
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/home">insta-klooni icon |</a>
+  <a class="navbar-brand" href="/home"><img src="/static/images/icon-instagram-black.png" style="width:5vh; height:5vh;"> |</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -22,11 +38,11 @@
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-sm btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-sm btn-outline-secondary my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
     </form>
     <ul class="navbar-nav ml-auto">
     <li>
-    <a class="nav-link" href="/home">user profile link icon</a>
+    <a class="nav-link" href="/home"><i class="fa fa-user-o" style="font-size:36px"></i></a>
     </li>
     </ul>
 
