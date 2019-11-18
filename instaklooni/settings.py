@@ -75,7 +75,7 @@ TEMPLATES = [
 
 from decouple import config
 UPLOADCARE = {
-    'pub_key': 'fa38026657524765d660',
+    'pub_key': '16dfd6496130ede6336a',
     'secret': config('SECRET'),
 }
 
