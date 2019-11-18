@@ -4,7 +4,7 @@ from .models import Profile, Image
 class ImageTestClass(TestCase):
     #set-up method
     def setUp(self):
-        self.img = Image(name='imgOne', caption='capOne')
+        self.img = Image(name='imgOne',caption='capOne', likes=3, comments='clever!', profile_id=1)
         self.img.save_image()
         
     #testing  instance
