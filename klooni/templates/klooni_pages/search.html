@@ -20,7 +20,7 @@
     {% if searched_users %}
       <h2>Found {{ searched_users|length }} image(s) posted by {{message}}</h2>
     {% else %}
-      <h2> Found 0 users for the search term {{message}}</h2>
+      <h2> Found 0 users.  {{message}}</h2>
     {% endif %}
 
   </div>
@@ -48,9 +48,23 @@
 
 <p> {{photo.name}} </p>
 <p> {{ photo.caption }} </p>
-<p><i class="fa fa-heart-o"></i>
-{{numberOfLikes}} {{photo.comments|length}} <i class="fa fa-commenting-o"></i> </p>
+<p>
+{{numberOfLikes}} <i class="fa fa-heart-o"> </i> {{photo.comments|length}} <i class="fa fa-commenting-o"></i> </p>
 <hr>
+
+<!-- list of posted comments -->
+<p class='blueUnderline'>Comments</p>
+
+{{ comments|length }} Comment(s)
+
+<ul style="list-style-type: none">
+{% for comment in comments %}
+<li> {{comment.comments}} </li>
+</ul>
+{% endfor %}
+
+<!-- end of list of comments -->
+
 <div>
 
     <form  action="{% url 'comments' image_id=photo.id %}" method="post">

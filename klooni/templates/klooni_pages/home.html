@@ -57,7 +57,7 @@
 
 <p> {{item.name}} </p>
 <p> {{ item.caption }} </p>
-<p>{{numberOfLikes}} <i class="fa fa-heart-o"></i>  
+<p>{{numberOfLikes}} <i class="fa fa-heart-o"></i> 
 {{numberOfComments}} <i class="fa fa-commenting-o"></i></p>
 
       </div>
@@ -74,15 +74,19 @@
 <!-- end modal -->
 
 
+<!-- list of posted comments -->
+
 <p class='blueUnderline'>Comments</p>
 
-{{ comments|length }} Comment(s)
+{{ item.comment_set.all|length }} Comment(s)
 
 <ul style="list-style-type: none">
-{% for comment in comments %}
-<li> {{comments.comments}} </li>
-</ul>
+{% for comment in item.comment_set.all %}
+<li> {{comment.comments}} </li>
 {% endfor %}
+</ul>
+
+<!-- end of list of comments -->
 <div>
 
     <form  action="{% url 'comments' image_id=item.id %}" method="post">

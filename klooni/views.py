@@ -22,8 +22,9 @@ def home(request):
     likes = Like.objects.all()
     numberOfLikes = len(likes)
     # comments = Comment.get_comments(id)
-    comments = Comment.objects.all()
-    numberOfComments=len(comments)
+    # comments = Comment.objects.all()
+    # numberOfComments=len(comments)
+    # commentsPerImage = Comment.objects.filter(image_id=images.id).all()
     
     
     return render(request,'klooni_pages/home.html', locals())
@@ -68,9 +69,9 @@ def search_results(request):
     profile = Profile.objects.all()
     likes = Like.objects.all()
     numberOfLikes = len(likes)
-    # comments = Comment.get_comments(id)
     comments = Comment.objects.all()
     numberOfComments=len(comments)
+
     
     
     if 'username' in request.GET and request.GET["username"]:
@@ -104,7 +105,6 @@ def profilePage(request):
     profile = Profile.objects.all()
     likes = Like.objects.all()
     numberOfLikes = len(likes)
-    # comments = Comment.get_comments(id)
     comments = Comment.objects.all()
     numberOfComments=len(comments)
     
