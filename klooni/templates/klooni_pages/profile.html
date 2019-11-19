@@ -52,7 +52,7 @@
 {{ photo.comment_set.all|length }} Comment(s)
 
 <ul style="list-style-type: none">
-{% for comment in item.comment_set.all %}
+{% for comment in photo.comment_set.all %}
 <li> {{comment.comments}} </li>
 </ul>
 {% endfor %}

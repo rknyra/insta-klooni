@@ -20,7 +20,7 @@ def home(request):
     user = request.user.get_username()
     profile = Profile.objects.all()
     likes = Like.objects.all()
-    numberOfLikes = len(likes)
+    # numberOfLikes = len(likes)
     # comments = Comment.get_comments(id)
     # comments = Comment.objects.all()
     # numberOfComments=len(comments)
@@ -68,11 +68,7 @@ def search_results(request):
     photos = Image.objects.filter(profile=current_user.id)
     profile = Profile.objects.all()
     likes = Like.objects.all()
-    numberOfLikes = len(likes)
-    comments = Comment.objects.all()
-    numberOfComments=len(comments)
-
-    
+      
     
     if 'username' in request.GET and request.GET["username"]:
         form = forms.AuthenticationForm
@@ -104,9 +100,7 @@ def profilePage(request):
     photos = Image.objects.filter(profile=current_user.id)
     profile = Profile.objects.all()
     likes = Like.objects.all()
-    numberOfLikes = len(likes)
-    comments = Comment.objects.all()
-    numberOfComments=len(comments)
+ 
     
     return render(request,'klooni_pages/profile.html', locals())
 
