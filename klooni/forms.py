@@ -1,11 +1,17 @@
 from django import forms
-from .models import Image, Profile
+from .models import *
 
-class LikesNCommentsForm(forms.Form):
-    likes = forms.IntegerField()
-    comment = forms.CharField(label='Comment', max_length=200)
-    
+class LikesForm(forms.Form):
+    class Meta:
+        model = Image
+        exclude = '__all__'
+
+class CommentsForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        exclude = ['image', 'user']
+        
 class UploadPicForm(forms.ModelForm):
     class Meta:
         model = Image
-        exclude = ['profile','post_date', 'likes', 'comments', 'user']
+        exclude = ['profile','post_date','user']

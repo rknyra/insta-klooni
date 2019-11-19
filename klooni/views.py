@@ -1,37 +1,58 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import login, views, forms
 from django.contrib.auth.decorators import login_required
-from .models import Profile, Image
+from .models import *
 from django.contrib.auth.models import User
-from .forms import LikesNCommentsForm, UploadPicForm
+from .forms import LikesForm, CommentsForm, UploadPicForm
 
 
 #landing page
 def landing(request):
     form = forms.AuthenticationForm
-    return render(request, 'landing_page.html', {'form':form})
+    return render(request, 'landing_page.html', locals())
 
 #home page
 @login_required(login_url='/accounts/login')
 def home(request):
-    form = LikesNCommentsForm
+    likesForm = LikesForm
+    commentForm = CommentsForm
     images = Image.objects.all()
     user = request.user.get_username()
     profile = Profile.objects.all()
-    comments_field = Image._meta.get_field('comments')
-    likes_field = Image._meta.get_field('likes')
+    likes = Like.objects.all()
+    numberOfLikes = len(likes)
+    comments = Comment.objects.all() 
+    numberOfComments=len(comments)
     
+    return render(request,'klooni_pages/home.html', locals())
+
+def likes(request,image_id):
+    likesForm = LikesForm()
+    # if request.method == 'POST':
+    #     likesForm = LikesForm(request.POST)
+    #     if likesForm.is_valid():
+    #         form = likesForm.save(commit=False)
+            # form.user=request.user
+            # form.image= get_object_or_404(Image,pk=image_id)
+            # form.like= 1
+            # form.save()
+    #    CRUD     
+    obj1=Like.objects.create(user=request.user,image=get_object_or_404(Image,pk=image_id),likes=1)
+    obj1.save()
+    print(obj1)
+    return redirect('klooniHome')
+
+def comments(request,image_id):
+    commentsForm = CommentsForm()
     if request.method == 'POST':
-        form = LikesNCommentsForm(request.POST)
-        if form.is_valid():
-            likes = form.cleaned_data['likes']
-            comment = form.cleaned_data['comment']
-            
-        else:
-            form = LikesNCommentsForm()
-                
-    
-    return render(request,'klooni_pages/home.html', {'images':images, 'user':user, 'profile':profile, 'form':form, 'comments_field':comments_field, 'likes_field':likes_field})
+        commentsForm = CommentsForm(request.POST)
+        if commentsForm.is_valid():
+            form = commentsForm.save(commit=False)
+            form.user=request.user
+            form.image = get_object_or_404(Image,pk=image_id)
+            form.save()
+  
+    return redirect('klooniHome')
 
 #search feature
 @login_required(login_url='/accounts/login')
@@ -42,8 +63,6 @@ def search_results(request):
         images = Image.objects.all()
         user = request.user.get_username()
         profile = Profile.objects.all()
-        comments_field = Image._meta.get_field('comments')
-        likes_field = Image._meta.get_field('likes')
         search_term = request.GET.get("username")
         searched_users = Image.search_by_username(search_term)
         message = f"{search_term}"
@@ -66,8 +85,6 @@ def profilePage(request):
     current_user = request.user
     photos = Image.objects.filter(profile=current_user.id)
     profile = Profile.objects.all()
-    comments_field = Image._meta.get_field('comments')
-    likes_field = Image._meta.get_field('likes')
     
     return render(request,'klooni_pages/profile.html', locals())
 

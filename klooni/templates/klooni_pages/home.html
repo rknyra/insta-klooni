@@ -24,6 +24,10 @@
 <div class='justify-content-center'>
 <img class='img-responsive imagePost' src="{{item.image.cdn_url}}" alt='Image' data-toggle='modal' data-target="#{{item.id}}">
 
+<!-- likes and comments -->
+<p>{{numberOfLikes}} <i class="fa fa-heart-o"></i>  
+{{numberOfComments}} <i class="fa fa-commenting-o"></i></p>
+
 <!-- The Modal -->
 
 <div class="modal fade" id="{{item.id}}">
@@ -51,10 +55,8 @@
 
 <p> {{item.name}} </p>
 <p> {{ item.caption }} </p>
-<p><i class="fa fa-heart-o"></i><br>
-{{item.likes}} likes </p>
-<p class='blueUnderline'>Comments</p>
-<div> {{item.comments}} </div>
+<p>{{numberOfLikes}} <i class="fa fa-heart-o"></i>  
+{{numberOfComments}} <i class="fa fa-commenting-o"></i></p>
 
       </div>
 
@@ -70,35 +72,21 @@
 <!-- end modal -->
 
 
- {% comment %} {{comments_field}}
-  {{likes_field}} {% endcomment %}
 <p class='blueUnderline'>Comments</p>
 <div>
-{% comment %} insert post comment FORM  here {% endcomment %}
-  {% comment %} <form  action="admin/klooni/image" method="post"> {% endcomment %}
-    {% comment %} <form  action="{{item.image.cdn_url}}" method="post"> {% endcomment %}
 
-    <form  action="{% url 'klooniHome' %}" method="post">
+    <form  action="{% url 'comments' image_id=item.id %}" method="post">
 
     {% csrf_token %}
 
-    {% bootstrap_form form layout='inline' %}
+    {% bootstrap_form commentForm layout='inline' %}
 
-  
     <div class="form-group">
 
-    {% comment %} <input id='comment' type="text" name='comments_field' class="form-control" value=""> {% endcomment %}
-
-    <input id='comment' type="text" name='comment' class="form-control">
-
+ 
 
     <input type="submit" class="btn btn-primary btn-sm my-2" value="Post Comment">
-    </div><br>
-
-    {% comment %} <input type="hidden" name="next" value="{{next}}"> {% endcomment %}
-
-
-
+    </div>
    </form>
 </div>
 

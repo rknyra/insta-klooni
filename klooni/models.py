@@ -35,8 +35,6 @@ class Image(models.Model):
     caption = models.CharField(max_length =700)
     post_date = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(User, on_delete=models.CASCADE)
-    likes = models.IntegerField(blank=True)
-    comments = models.CharField(max_length =200, blank=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, default=None)
 
     
@@ -75,3 +73,23 @@ class Image(models.Model):
     
     def __str__(self):
         return str(self.name)
+    
+class Like(models.Model):
+    likes = models.IntegerField(blank=True)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE, default=None)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+
+    def save_like(self):
+        self.save()
+    def __str__(self):
+        return str(self.likes)
+
+class Comment(models.Model):
+    comments = models.CharField(max_length =200, blank=True)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE, default=None)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    
+    def save_comment(self):
+        self.save()
+    def __str__(self):
+        return str(self.comments)
