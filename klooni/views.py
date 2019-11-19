@@ -59,6 +59,8 @@ def comments(request,image_id):
 #search feature
 @login_required(login_url='/accounts/login')
 def search_results(request):
+    likesForm = LikesForm
+    commentForm = CommentsForm
     
     if 'username' in request.GET and request.GET["username"]:
         form = forms.AuthenticationForm
@@ -82,6 +84,8 @@ def search_results(request):
 #profile page
 @login_required(login_url='/accounts/login')
 def profilePage(request):
+    likesForm = LikesForm
+    commentForm = CommentsForm
     images = Image.objects.all()
     user = request.user.get_username()
     current_user = request.user
