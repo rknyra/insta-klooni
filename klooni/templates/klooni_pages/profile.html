@@ -27,10 +27,10 @@
 <div class='text-center align-self-center'> <p> Bio:  {{ photo.user.bio}} </p></div>
 <hr>
 
-{% endfor %}
 
 
-{% for photo in photos %}
+
+
 <h5> My Posts... </h5>
 {% comment %} pics posted by current_user {% endcomment %}
 <div class='d-flex justify-content-center'>
@@ -47,7 +47,6 @@
 
 <!-- comments -->
 
-<p class='blueUnderline'>Comments</p>
 
 {{ photo.comment_set.all|length }} Comment(s)
 

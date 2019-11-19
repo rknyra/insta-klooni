@@ -14,7 +14,6 @@
 
 <!-- search results -->
 
-{% comment %} <div class="container-fluid searchPage"> {% endcomment %}
 
   <div class="row searchResults">
     {% if searched_users %}
@@ -53,6 +52,7 @@
 <hr>
 
 <!-- list of posted comments -->
+
 <p class='blueUnderline'>Comments</p>
 
 {{ photo.comment_set.all|length }} Comment(s)
