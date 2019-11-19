@@ -40,8 +40,8 @@
 <p> {{photo.name}} </p>
 <p> {{ photo.caption }} </p>
 
-<p> <i class="fa fa-heart-o"></i>
-{{numberOfLikes}}    {{photo.comments}} <i class="fa fa-commenting-o"></i> </p>
+<p>
+{{photo.like_set.all|length}}  <i class="fa fa-heart-o"></i>   {{photo.comment_set.all|length}} <i class="fa fa-commenting-o"></i> </p>
 <hr>
 
 
@@ -49,10 +49,10 @@
 
 <p class='blueUnderline'>Comments</p>
 
-{{ comments|length }} Comment(s)
+{{ photo.comment_set.all|length }} Comment(s)
 
 <ul style="list-style-type: none">
-{% for comment in comments %}
+{% for comment in item.comment_set.all %}
 <li> {{comment.comments}} </li>
 </ul>
 {% endfor %}
