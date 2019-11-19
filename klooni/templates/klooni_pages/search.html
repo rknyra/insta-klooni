@@ -61,7 +61,20 @@
 <div> {{photo.comments}} </div>
 <hr>
 <div>
-insert post comment FORM  here
+
+    <form  action="{% url 'comments' image_id=item.id %}" method="post">
+
+    {% csrf_token %}
+
+    {% bootstrap_form commentForm layout='inline' %}
+
+    <div class="form-group">
+
+ 
+
+    <input type="submit" class="btn btn-primary btn-sm my-2" value="Post Comment">
+    </div>
+   </form>
 </div>
 
 <hr>

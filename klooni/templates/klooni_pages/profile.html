@@ -44,22 +44,21 @@
 <div> {{photo.comments}} </div>
 <hr>
 <div>
-{% comment %} insert post comment FORM  here {% endcomment %}
 
-  <form  action="admin/klooni/image" method="post">
+
+    <form  action="{% url 'comments' image_id=item.id %}" method="post">
+
     {% csrf_token %}
-  
+
+    {% bootstrap_form commentForm layout='inline' %}
+
     <div class="form-group">
 
-    <input id='comment' type="text" name='comments_field' class="form-control" value="">
+ 
 
     <input type="submit" class="btn btn-primary btn-sm my-2" value="Post Comment">
-    </div><br>
-
-    <input type="hidden" name="next" value="{{next}}">
-
- 
-  </form>
+    </div>
+   </form>
 </div>
 
 <hr>
