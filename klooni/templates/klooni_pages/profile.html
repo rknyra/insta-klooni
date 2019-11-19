@@ -44,39 +44,6 @@
 {{photo.like_set.all|length}}  <i class="fa fa-heart-o"></i>   {{photo.comment_set.all|length}} <i class="fa fa-commenting-o"></i> </p>
 <hr>
 
-
-<!-- comments -->
-
-
-{{ photo.comment_set.all|length }} Comment(s)
-
-<ul style="list-style-type: none">
-{% for comment in photo.comment_set.all %}
-<li> {{comment.comments}} </li>
-</ul>
-{% endfor %}
-
-<!-- end comments -->
-
-
-<div>
-
-    <form  action="{% url 'comments' image_id=photo.id %}" method="post">
-
-    {% csrf_token %}
-
-    {% bootstrap_form commentForm layout='inline' %}
-
-    <div class="form-group">
-
- 
-
-    <input type="submit" class="btn btn-primary btn-sm my-2" value="Post Comment">
-    </div>
-   </form>
-</div>
-
-<hr>
 </div>
 {% endfor %}
 
