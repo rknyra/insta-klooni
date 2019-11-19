@@ -25,8 +25,8 @@
 <img class='img-responsive imagePost' src="{{item.image.cdn_url}}" alt='Image' data-toggle='modal' data-target="#{{item.id}}">
 
 <!-- likes and comments -->
-<p>{{numberOfLikes}} <i class="fa fa-heart-o"></i>  
-{{numberOfComments}} <i class="fa fa-commenting-o"></i></p>
+<p>{{ item.like_set.all|length }} <i class="fa fa-heart-o"></i>  
+{{ item.comment_set.all|length }} <i class="fa fa-commenting-o"></i></p>
 
 
 
@@ -52,13 +52,13 @@
 </div>
 
 <div class='d-flex justify-content-center'>
-<img class='img-responsive imagePost' src="{{item.image.cdn_url}}" alt='image'>
+<img class='img-responsive imagePost' src="{{ item.image.cdn_url }}" alt='image'>
 </div>
 
 <p> {{item.name}} </p>
 <p> {{ item.caption }} </p>
-<p>{{numberOfLikes}} <i class="fa fa-heart-o"></i> 
-{{numberOfComments}} <i class="fa fa-commenting-o"></i></p>
+<p>{{item.like_set.all|length }} <i class="fa fa-heart-o"></i> 
+{{ item.comment_set.all|length }} <i class="fa fa-commenting-o"></i></p>
 
       </div>
 
