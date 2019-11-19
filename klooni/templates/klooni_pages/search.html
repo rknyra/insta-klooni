@@ -2,37 +2,63 @@
 
 {% block content %}
 
+<!-- Homepage replica -->
 
 <div class='container'>
     {% include 'navbar.html' %}
 <hr>
 
+
+
+<!-- search results -->
+
+{% comment %} <div class="container-fluid searchPage"> {% endcomment %}
+
+  <div class="row searchResults">
+    {% if searched_users %}
+      <h2>Found {{ searched_users|length }} of searched term {{message}}</h2>
+    {% else %}
+      <h2> Found 0 users for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  {% comment %} <div class="row">
+
+    {% for image in searched_users %}
+      <div class="col-sm-6 col-md-3">
+          <h1>{{image.user }}</h1>
+      </div>
+    {% endfor %}
+  </div> {% endcomment %}
+{% comment %} </div> {% endcomment %}
+
+<!-- end of search results -->
+
+
 <div class='row justify-content-center top-buffer'>
-{% for item in images %}
+{% for photo in photos %}
 
 <div class='col-xs-7 col-sm-7 col-md-7 col-lg-7 d-block top-buffer'> 
 
 
 <div class='d-inline-flex'>
-<div class="userAvatar mr-2"> <img class='img-thumbnail' src="{{item.user.prof_pic.cdn_url}}" alt='userAvatar'></div>
+<div class="userAvatar mr-2"> <img class='img-thumbnail' src="{{photo.user.prof_pic.cdn_url}}" alt='userAvatar'></div>
 
-<div class='text-center align-self-center'> <strong> {{ item.user.user.username}} </strong> </div>
+<div class='text-center align-self-center'> <strong> {{ photo.user.user.username}} </strong> </div>
 </div>
-
-
-
 
 
 <div class='d-flex justify-content-center'>
-<img class='img-responsive imagePost' src="{{item.image.cdn_url}}" alt='image'>
+<img class='img-responsive imagePost' src="{{photo.image.cdn_url}}" alt='image'>
 </div>
 
-<p> {{item.name}} </p>
-<p> {{ item.caption }} </p>
+<p> {{photo.name}} </p>
+<p> {{ photo.caption }} </p>
 <p><i class="fa fa-heart-o"></i><br>
-{{item.likes}} likes </p>
+{{photo.likes}} likes </p>
 <p class='blueUnderline'>Comments</p>
-<div> {{item.comments}} </div>
+<div> {{photo.comments}} </div>
 <hr>
 <div>
 insert post comment FORM  here
@@ -43,30 +69,6 @@ insert post comment FORM  here
 {% endfor %}
 
 </div>
-</div>
-
-
-<div class="container searchPage">
-
-  <div class="row">
-    {% if usernames%}
-      <h2>Found {{ usernames|length }} of searched term {{message}}</h2>
-    {% else %}
-      <h2> Found 0 users for the search term {{message}}</h2>
-    {% endif %}
-
-  </div>
-
-  <div class="row">
-
-  {% if usernames %}
-    {% for username in usernames %}
-      <div class="col-sm-6 col-md-3">
-          <h1>{{username.username}}</h1>
-      </div>
-    {% endfor %}
-  {% endif %}
-  </div>
 </div>
 
 {% endblock %}

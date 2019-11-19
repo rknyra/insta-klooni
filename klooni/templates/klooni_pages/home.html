@@ -75,17 +75,29 @@
 <p class='blueUnderline'>Comments</p>
 <div>
 {% comment %} insert post comment FORM  here {% endcomment %}
-  <form  action="admin/klooni/image" method="post">
+  {% comment %} <form  action="admin/klooni/image" method="post"> {% endcomment %}
+    {% comment %} <form  action="{{item.image.cdn_url}}" method="post"> {% endcomment %}
+
+    <form  action="{% url 'klooniHome' %}" method="post">
+
     {% csrf_token %}
+
+    {% bootstrap_form form layout='inline' %}
+
   
     <div class="form-group">
 
-    <input id='comment' type="text" name='comments_field' class="form-control" value="">
+    {% comment %} <input id='comment' type="text" name='comments_field' class="form-control" value=""> {% endcomment %}
+
+    <input id='comment' type="text" name='comment' class="form-control">
+
 
     <input type="submit" class="btn btn-primary btn-sm my-2" value="Post Comment">
     </div><br>
 
-    <input type="hidden" name="next" value="{{next}}">
+    {% comment %} <input type="hidden" name="next" value="{{next}}"> {% endcomment %}
+
+
 
    </form>
 </div>
@@ -94,6 +106,7 @@
 </div>
 {% endfor %}
 
+</div>
 </div>
 </div>
 
