@@ -25,7 +25,8 @@ class Profile(models.Model):
         profile = cls.objects.filter(id=Profile.id)
         return profile
     
- 
+    def __str__(self):
+        return str(self.user)
 
 #Image Model
 class Image(models.Model):
@@ -70,3 +71,6 @@ class Image(models.Model):
     def filter_by_user_id(cls):
         photos = cls.objects.filter(id=user.user_id)
         return photos
+    
+    def __str__(self):
+        return str(self.name)
