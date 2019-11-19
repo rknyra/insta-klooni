@@ -21,8 +21,10 @@ def home(request):
     profile = Profile.objects.all()
     likes = Like.objects.all()
     numberOfLikes = len(likes)
-    comments = Comment.objects.all() 
+    # comments = Comment.get_comments(id)
+    comments = Comment.objects.all()
     numberOfComments=len(comments)
+    
     
     return render(request,'klooni_pages/home.html', locals())
 

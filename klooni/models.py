@@ -81,6 +81,7 @@ class Like(models.Model):
 
     def save_like(self):
         self.save()
+        
     def __str__(self):
         return str(self.likes)
 
@@ -91,5 +92,12 @@ class Comment(models.Model):
     
     def save_comment(self):
         self.save()
+        
+    @classmethod
+    def get_comments(cls,id):
+        comments = cls.objects.filter(image__id=id)
+        
+        return comments
+        
     def __str__(self):
         return str(self.comments)

@@ -28,6 +28,8 @@
 <p>{{numberOfLikes}} <i class="fa fa-heart-o"></i>  
 {{numberOfComments}} <i class="fa fa-commenting-o"></i></p>
 
+
+
 <!-- The Modal -->
 
 <div class="modal fade" id="{{item.id}}">
@@ -73,6 +75,10 @@
 
 
 <p class='blueUnderline'>Comments</p>
+
+<ul style="list-style-type: none">
+<li> {{comments.Comment.comments}} </li>
+</ul>
 <div>
 
     <form  action="{% url 'comments' image_id=item.id %}" method="post">
