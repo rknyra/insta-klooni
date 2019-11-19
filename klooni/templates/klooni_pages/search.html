@@ -18,22 +18,13 @@
 
   <div class="row searchResults">
     {% if searched_users %}
-      <h2>Found {{ searched_users|length }} images posted by {{message}}</h2>
+      <h2>Found {{ searched_users|length }} image(s) posted by {{message}}</h2>
     {% else %}
       <h2> Found 0 users for the search term {{message}}</h2>
     {% endif %}
 
   </div>
 
-  {% comment %} <div class="row">
-
-    {% for image in searched_users %}
-      <div class="col-sm-6 col-md-3">
-          <h1>{{image.user }}</h1>
-      </div>
-    {% endfor %}
-  </div> {% endcomment %}
-{% comment %} </div> {% endcomment %}
 
 <!-- end of search results -->
 
@@ -57,10 +48,8 @@
 
 <p> {{photo.name}} </p>
 <p> {{ photo.caption }} </p>
-<p><i class="fa fa-heart-o"></i><br>
-{{photo.likes}} likes </p>
-<p class='blueUnderline'>Comments</p>
-<div> {{photo.comments}} </div>
+<p><i class="fa fa-heart-o"></i>
+{{numberOfLikes}} {{photo.comments|length}} <i class="fa fa-commenting-o"></i> </p>
 <hr>
 <div>
 

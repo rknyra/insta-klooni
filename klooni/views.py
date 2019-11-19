@@ -66,6 +66,11 @@ def search_results(request):
     current_user = request.user
     photos = Image.objects.filter(profile=current_user.id)
     profile = Profile.objects.all()
+    likes = Like.objects.all()
+    numberOfLikes = len(likes)
+    # comments = Comment.get_comments(id)
+    comments = Comment.objects.all()
+    numberOfComments=len(comments)
     
     
     if 'username' in request.GET and request.GET["username"]:
@@ -97,6 +102,11 @@ def profilePage(request):
     current_user = request.user
     photos = Image.objects.filter(profile=current_user.id)
     profile = Profile.objects.all()
+    likes = Like.objects.all()
+    numberOfLikes = len(likes)
+    # comments = Comment.get_comments(id)
+    comments = Comment.objects.all()
+    numberOfComments=len(comments)
     
     return render(request,'klooni_pages/profile.html', locals())
 

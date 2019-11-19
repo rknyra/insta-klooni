@@ -39,10 +39,9 @@
 
 <p> {{photo.name}} </p>
 <p> {{ photo.caption }} </p>
-<p><i class="fa fa-heart-o"></i><br>
-{{photo.likes}} likes </p>
-<p class='blueUnderline'>Comments</p>
-<div> {{photo.comments}} </div>
+
+<p><i class="fa fa-heart-o"></i>
+{{numberOfLikes}} {{photo.comments|length}} <i class="fa fa-commenting-o"></i> </p>
 <hr>
 <div>
 
