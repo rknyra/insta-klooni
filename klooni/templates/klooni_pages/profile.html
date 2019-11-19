@@ -1,4 +1,5 @@
 {% extends 'klooni_pages/base.html'%}
+{% load bootstrap4 %}
 
 {% block content %}
 
@@ -44,7 +45,6 @@
 <div> {{photo.comments}} </div>
 <hr>
 <div>
-
 
     <form  action="{% url 'comments' image_id=item.id %}" method="post">
 
