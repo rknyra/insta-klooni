@@ -61,6 +61,12 @@ def comments(request,image_id):
 def search_results(request):
     likesForm = LikesForm
     commentForm = CommentsForm
+    images = Image.objects.all()
+    user = request.user.get_username()
+    current_user = request.user
+    photos = Image.objects.filter(profile=current_user.id)
+    profile = Profile.objects.all()
+    
     
     if 'username' in request.GET and request.GET["username"]:
         form = forms.AuthenticationForm

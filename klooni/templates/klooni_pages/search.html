@@ -18,7 +18,7 @@
 
   <div class="row searchResults">
     {% if searched_users %}
-      <h2>Found {{ searched_users|length }} of searched term {{message}}</h2>
+      <h2>Found {{ searched_users|length }} images posted by {{message}}</h2>
     {% else %}
       <h2> Found 0 users for the search term {{message}}</h2>
     {% endif %}
@@ -64,7 +64,7 @@
 <hr>
 <div>
 
-    <form  action="{% url 'comments' image_id=item.id %}" method="post">
+    <form  action="{% url 'comments' image_id=photo.id %}" method="post">
 
     {% csrf_token %}
 

@@ -76,9 +76,13 @@
 
 <p class='blueUnderline'>Comments</p>
 
+{{ comments|length }} Comment(s)
+
 <ul style="list-style-type: none">
+{% for comment in comments %}
 <li> {{comments.comments}} </li>
 </ul>
+{% endfor %}
 <div>
 
     <form  action="{% url 'comments' image_id=item.id %}" method="post">

@@ -46,7 +46,7 @@
 <hr>
 <div>
 
-    <form  action="{% url 'comments' image_id=item.id %}" method="post">
+    <form  action="{% url 'comments' image_id=photo.id %}" method="post">
 
     {% csrf_token %}
 
