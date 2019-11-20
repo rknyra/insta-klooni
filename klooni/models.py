@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 import datetime as dt
 from pyuploadcare.dj.models import ImageField
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 #Profile model
 class Profile(models.Model):
@@ -27,10 +30,18 @@ class Profile(models.Model):
     
     def __str__(self):
         return str(self.user)
+    
+@receiver(post_save,sender=User)
+def create_profile(sender, instance,created,**kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+@receiver(post_save,sender=User)
+def save_profile(sender, instance,**kwargs):
+    instance.profile.save()
 
 #Image Model
 class Image(models.Model):
-    image = ImageField(blank=True, manual_crop="")
+    image = ImageField(manual_crop="")
     name = models.CharField(max_length =70)
     caption = models.CharField(max_length =700)
     post_date = models.DateTimeField(auto_now_add=True)

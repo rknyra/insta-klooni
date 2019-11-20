@@ -11,41 +11,70 @@
 <div class='row justify-content-center top-buffer'>
 
 
-{% for photo in photos %}
+    {% for photo in photos %}
 
-<div class='col-xs-7 col-sm-7 col-md-7 col-lg-7 d-block top-buffer'> 
+    <div class='col-xs-7 col-sm-7 col-md-7 col-lg-7 d-block top-buffer'> 
 
 
-<div class='d-inline-flex'>
-<div class="userAvatar mr-2"> <img class='img-thumbnail' src="{{photo.user.prof_pic.cdn_url}}" alt='userAvatar'></div>
+    <div class='d-inline-flex'>
+    <div class="userAvatar mr-2"> <img class='img-thumbnail' src="{{photo.user.prof_pic.cdn_url}}" alt='userAvatar'></div>
 
-<div class='text-center mr-2 align-self-center'> <strong> {{ photo.user.user.username}} </strong> </div>
+    <div class='text-center mr-2 align-self-center'> <strong> {{ photo.user.user.username}} </strong> </div>
+    </div>
+    <hr>
+    <div class='text-center align-self-center'> <p> Email:  {{ photo.user.user.email}} </p></div>
+
+    <div class='text-center align-self-center'> <p> Bio:  {{ photo.user.bio}} </p></div>
+    <hr>
+
+
+
+
+
+    <h5> My Posts... </h5>
+    {% comment %} pics posted by current_user {% endcomment %}
+    <div class='d-flex justify-content-center'>
+    <img class='img-responsive imagePost' src="{{photo.image.cdn_url}}" alt='image'>
+    </div>
+
+    <p> {{photo.name}} </p>
+    <p> {{ photo.caption }} </p>
+
+    <p>
+    {{photo.like_set.all|length}}  <i class="fa fa-heart-o"></i>   {{photo.comment_set.all|length}} <i class="fa fa-commenting-o"></i> </p>
+    <hr>
+
+    </div>
+
+
+
+    {% endfor %}
+
+<!-- if no posts yet then -->
+
+    {% if photos %}
+
+    {% else %}
+
+
+ <div class='d-flex col-xs-7 col-sm-7 col-md-7 col-lg-7 text-center'>
+
+<div class='userAvatar float-left'><img class='img-thumbnail' src="{{request.user.prof_pic.cdn_url}}" alt='userAvatar'></div>
+
+<div class='align-self-center mx-auto'> <strong> {{ request.user.username}} </strong> </div>
+
 </div>
-<hr>
-<div class='text-center align-self-center'> <p> Email:  {{ photo.user.user.email}} </p></div>
 
-<div class='text-center align-self-center'> <p> Bio:  {{ photo.user.bio}} </p></div>
-<hr>
-
-
-
-
-
-<h5> My Posts... </h5>
-{% comment %} pics posted by current_user {% endcomment %}
-<div class='d-flex justify-content-center'>
-<img class='img-responsive imagePost' src="{{photo.image.cdn_url}}" alt='image'>
-</div>
-
-<p> {{photo.name}} </p>
-<p> {{ photo.caption }} </p>
-
-<p>
-{{photo.like_set.all|length}}  <i class="fa fa-heart-o"></i>   {{photo.comment_set.all|length}} <i class="fa fa-commenting-o"></i> </p>
-<hr>
+<div  class='col-xs-7 col-sm-7 col-md-7 col-lg-7 d-flex justify-content-start'> You haven't posted any pics yet...  <a href={% url 'klooniFeed' %}> Click here to post one </a> </div>
 
 </div>
-{% endfor %}
+
+
+<!-- end of condition 'no posts yet'-->
+
+
+    {% endif %}
+
 
 </div>
 </div>

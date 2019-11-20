@@ -3,7 +3,7 @@ from django.contrib.auth import login, views, forms
 from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib.auth.models import User
-from .forms import LikesForm, CommentsForm, UploadPicForm
+from .forms import LikesForm, CommentsForm, UpdateProfileForm, UploadPicForm
 
 
 #landing page
@@ -105,9 +105,55 @@ def profilePage(request):
     return render(request,'klooni_pages/profile.html', locals())
 
 
-#filter photos by user_id
-# def filter_by_user_id(request, search_term):
-#     photos = Image.filter_by_user_id(search_term)
-#     message = f"{search_term}"
-    
-#     return render (request,'klooni_pages/profile.html',{"message":message,'photos': photos})
+
+
+#update current user profile
+@login_required(login_url='/accounts/login')
+def updateProfile(request):
+    current_user = request.user
+    my_prof = Profile.objects.get(user=current_user.id)
+    updateForm = UpdateProfileForm(instance=request.user)
+ 
+    if request.method == 'POST':
+        updateForm = UpdateProfileForm(request.POST,request.FILES,instance=request.user.profile)
+
+        if updateForm.is_valid():
+            updateForm.save()
+            
+            
+        return redirect('klooniProfile')
+    else:
+        updateForm = UpdateProfileForm(instance=request.user.profile)
+
+    return render(request,'klooni_pages/update_profile.html', locals())
+
+
+
+#upload feed/pic/video page
+@login_required(login_url='/accounts/login')
+def uploadPic(request):
+    current_user = request.user
+    # my_prof = Profile.objects.get(id=current_user.id)
+    uploadForm = UploadPicForm()
+    print(uploadForm)
+    # uploadForm = UploadPicForm(request.POST or None,request.FILES or None)
+ 
+
+    if request.method == 'POST':
+        uploadForm = UploadPicForm(request.POST)
+        # profile = request.user.username
+        # uploadForm = UploadPicForm(request.POST or None,request.FILES or None)
+        user = request.user.id
+
+        if uploadForm.is_valid():
+            upload = uploadForm.save(commit=False)
+            # upload.user = my_prof
+            upload.profile = current_user
+            upload.save()
+            
+        return redirect('klooniProfile')
+    else:
+        # uploadForm = UploadPicForm(request.POST or None,request.FILES or None)
+            uploadForm = UploadPicForm()
+
+    return render(request,'klooni_pages/upload_pic.html', locals())
