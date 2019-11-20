@@ -4,6 +4,10 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib.auth.models import User
 from .forms import LikesForm, CommentsForm, UpdateProfileForm, UploadPicForm
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse,Http404,HttpResponseRedirect
+
+
 
 
 #landing page
@@ -68,7 +72,15 @@ def search_results(request):
     photos = Image.objects.filter(profile=current_user.id)
     profile = Profile.objects.all()
     likes = Like.objects.all()
+    
       
+    try:
+        user = User.objects.get(id =request.user.id)
+    except ObjectDoesNotExist:
+        raise Http404()
+    message = 'based on your search term'
+    return render(request, 'klooni_pages/search.html',locals())
+    
     
     if 'username' in request.GET and request.GET["username"]:
         form = forms.AuthenticationForm
