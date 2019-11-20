@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'klooni',
     'bootstrap4',
     'pyuploadcare.dj',
-    'tinymce',
+    
 ]
 
 MIDDLEWARE = [
