@@ -24,7 +24,12 @@
     <hr>
     <div class='text-center align-self-center'> <p> Email:  {{ photo.user.user.email}} </p></div>
 
-    <div class='text-center align-self-center'> <p> Bio:  {{ photo.user.bio}} </p></div>
+    <div class='text-center align-self-center'> <p> Bio:  {{ photo.user.bio}} </p>  
+    </div>
+
+    <div class='text-center align-self-center'> <p> <a href={% url 'editProfile' %}> Edit Bio </a> </p>  
+    </div>  
+
     <hr>
 
 
