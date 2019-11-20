@@ -134,26 +134,28 @@ def updateProfile(request):
 def uploadPic(request):
     current_user = request.user
     # my_prof = Profile.objects.get(id=current_user.id)
-    uploadForm = UploadPicForm(instance=request.user.profile)
+    uploadForm = UploadPicForm()
     print(uploadForm)
     # uploadForm = UploadPicForm(request.POST or None,request.FILES or None)
  
 
     if request.method == 'POST':
-        uploadForm = UploadPicForm(request.POST,request.FILES,instance=request.user.profile)
+        uploadForm = UploadPicForm(request.POST,request.FILES)
         # profile = request.user.username
         # uploadForm = UploadPicForm(request.POST or None,request.FILES or None)
         user = request.user.id
 
         if uploadForm.is_valid():
             upload = uploadForm.save(commit=False)
-            # upload.user = my_prof
+            upload.user = request.user.profile
             upload.profile = current_user
             upload.save()
+            
+        
             
         return redirect('klooniProfile')
     else:
         # uploadForm = UploadPicForm(request.POST or None,request.FILES or None)
-            uploadForm = UploadPicForm(instance=request.user.profile)
+            uploadForm = UploadPicForm()
 
     return render(request,'klooni_pages/upload_pic.html', locals())
